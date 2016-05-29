@@ -23,15 +23,15 @@ source("keys.R")
 
 
 # Clean Manhattan lot locations from PLUTO data http://www.nyc.gov/html/dcp/html/bytes/dwn_pluto_mappluto.shtml
-source("manhattan_lot_locations.R")
+source("01_manhattan_lot_locations.R")
 
 
 # Get manhattan froyo locations from Google Places API
-source("froyo_locations_google.R")
+source("02_froyo_locations_google.R")
 
 
 # Calculate distances
-source("distance_calculation.R")
+source("03_distance_calculation.R")
 
 
 # Save workspace
