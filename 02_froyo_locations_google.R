@@ -1,7 +1,6 @@
 
 
-# Changes and quality improvements in Google Places API Search
-# FEB 16, 2016
+# Google Places Nearby Search API ################################################################################
 
 BuildNearbySearchUrl <- function(keyword, latitude, longitude,
                                  rankby="prominence", radius, type=NULL,
@@ -14,7 +13,7 @@ BuildNearbySearchUrl <- function(keyword, latitude, longitude,
   #   longitude: The longitude around which to retrieve place information.
   #   rankby: Specifies the order in which the results are returned. Either "prominence" or "distance"
   #   radius: Defines the distance (in meters) within which to return place results.
-  #   types: Restricts the results to places matching at least one of the specified types.
+  #   type: Restricts the results to places matching the specified types.
   #   googleKey: Your application's API key.
   #   nextPageToken: Returns the next 20 results from a previously run search.
   #
@@ -47,7 +46,7 @@ GetGooglePlacesNearbySearch <- function(keyword, latitude, longitude,
   #   longitude: The longitude around which to retrieve place information.
   #   rankby: Specifies the order in which the results are returned. Either "prominence" or "distance"
   #   radius: Defines the distance (in meters) within which to return place results.
-  #   types: Restricts the results to places matching at least one of the specified types.
+  #   type: Restricts the results to places matching the specified type.
   #   googleKey: Your application's API key.
   #   nextPageToken: Returns the next 20 results from a previously run search.
   #   pages: The number of pages of results to retrieve (1, 2, or 3); 20 results/page
@@ -70,7 +69,10 @@ GetGooglePlacesNearbySearch <- function(keyword, latitude, longitude,
     message(paste0("    Fetching page ", i))
     
     # Build the URL
-    googleUrl <- BuildNearbySearchUrl(keyword, latitude, longitude, rankby=rankby, radius, type, googleKey=googleKey, nextPageToken=nextPageToken)
+    googleUrl <- BuildNearbySearchUrl(keyword, latitude, longitude,
+                                      rankby=rankby, radius, type,
+                                      googleKey=googleKey,
+                                      nextPageToken=nextPageToken)
     
     # Get data
     data <- GET(googleUrl)
