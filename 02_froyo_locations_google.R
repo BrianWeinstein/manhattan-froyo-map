@@ -2,53 +2,6 @@
 
 # Changes and quality improvements in Google Places API Search
 # FEB 16, 2016
-# http://googlegeodevelopers.blogspot.com.au/2016/02/changes-and-quality-improvements-in_16.html
-
-
-
-# Text search ################################################################################
-
-# GetGooglePlacesTextSearch <- function(queryTerm, google_key, nextPageToken=NULL){
-#   
-#   googleUrl <- paste0("https://maps.googleapis.com/maps/api/place/textsearch/json",
-#                       "?key=", google_key,
-#                       "&query=", URLencode(as.character(queryTerm)),
-#                       ifelse(!is.null(nextPageToken), paste0("&pagetoken=", nextPageToken), ""))
-#   
-#   data <- GET(googleUrl)
-#   content <- content(data)
-#   contentList <- fromJSON(toJSON(content, digits=5), flatten=TRUE)
-#   
-#   nextPageToken <- contentList$next_page_token
-#   outputTable <- flatten(as.data.frame(contentList$results))
-#   
-#   return(list(outputTable=outputTable, nextPageToken=nextPageToken))
-#   
-# }
-# 
-# 
-# 
-# resultsList <- list()
-# nextPageToken <- NULL
-# 
-# for(i in 1:10){
-#   
-#   print(i)
-#   
-#   output <- GetGooglePlacesTextSearch("frozen yogurt in manhattan", google_key, nextPageToken=nextPageToken)
-#   resultsList[[i]] <- as.data.frame(output$outputTable)
-#   nextPageToken <- output$nextPageToken
-#   
-#   Sys.sleep(2)
-# }
-# 
-# froyoData <- flatten(do.call(smartbind, resultsList))
-# 
-# froyoData %>% group_by(id) %>% summarize(n())
-
-
-
-# Nearby Search ################################################################################
 
 BuildNearbySearchUrl <- function(keyword, latitude, longitude,
                                  rankby="prominence", radius, type=NULL,
