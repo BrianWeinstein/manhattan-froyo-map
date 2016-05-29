@@ -1,0 +1,23 @@
+Publish your map. Share the link, embed it in your website or develop a cartodb.js application with it.
+
+
+Share it with your friends or co-workers, or post it in your social networks.
+
+	Public link:
+	https://brianweinstein.cartodb.com/viz/27dd05e0-2486-11e6-98ba-0e98b61680bf/public_map
+
+	Public embed link:
+	https://brianweinstein.cartodb.com/viz/27dd05e0-2486-11e6-98ba-0e98b61680bf/embed_map
+
+
+
+Publish your map on your blog or website.
+
+	Embed iframe:
+	<iframe width="100%" height="520" frameborder="0" src="https://brianweinstein.cartodb.com/viz/27dd05e0-2486-11e6-98ba-0e98b61680bf/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+
+
+Add your map to your applications by using this URL.
+
+	https://brianweinstein.cartodb.com/api/v2/viz/27dd05e0-2486-11e6-98ba-0e98b61680bf/viz.json
