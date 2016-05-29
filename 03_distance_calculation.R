@@ -1,70 +1,5 @@
 
 
-"https://maps.googleapis.com/maps/api/distancematrix/json?key=google_key&origins=40.7271,-73.99577|40.74286,-74.00003&destinations=40.73805,-73.99674|40.79284,-73.97269|40.80537,-73.96621&mode=walking"
-
-
-
-# 
-# # Define a distance function ################################################################
-# 
-# # Manhattan distance (with rotation)
-# ManDist <- function(latitude1, longitude1, latitude2, longitude2) {
-#   # Calculates the Manhattan distance between two (latitude, longitude)
-#   # points, accounting for Manhattan block rotation.
-#   #
-#   # Args:
-#   #   latitude1: The latitude of point 1
-#   #   longitude1: The longitude of point 1
-#   #   latitude2: The latitude of point 2
-#   #   longitude2: The longitude of point 2
-#   #
-#   # Returns:
-#   #   A relative distance metric (latitude difference + longitude differencedifference) for
-#   #   the two points, accounting for Manhatan block rotation.
-#   
-#   theta <- -0.51 # NYC rotation (radians)
-#   
-#   newLong1 <- ((longitude1 * cos(theta)) + (latitude1 * sin(theta)))
-#   newLat1 <- ((latitude1 * cos(theta)) - (longitude1 * sin(theta)))
-#   
-#   newLong2 <- ((longitude2 * cos(theta)) + (latitude2 * sin(theta)))
-#   newLat2 <- ((latitude2 * cos(theta)) - (longitude2 * sin(theta)))
-#   
-#   abs(newLong1 - newLong2) + abs(newLat1 - newLat2)
-#   
-# }
-# 
-# 
-# 
-# # Calculate distance in miles between two points
-# # adapted from https://conservationecology.wordpress.com/2013/06/30/distance-between-two-points-in-r/
-# earth.dist <- function (long1, lat1, long2, lat2){
-#   
-#   theta <- -0.51 # NYC rotation (radians)
-#   
-#   long1 <- ((long1 * cos(theta)) + (lat1 * sin(theta)))
-#   lat1 <- ((lat1 * cos(theta)) - (long1 * sin(theta)))
-#   
-#   long2 <- ((long2 * cos(theta)) + (lat2 * sin(theta)))
-#   lat2 <- ((lat2 * cos(theta)) - (long2 * sin(theta)))
-#   
-#   
-#   rad <- pi/180
-#   a1 <- lat1 * rad
-#   a2 <- long1 * rad
-#   b1 <- lat2 * rad
-#   b2 <- long2 * rad
-#   dlon <- b2 - a2
-#   dlat <- b1 - a1
-#   a <- (sin(dlat/2))^2 + cos(a1) * cos(b1) * (sin(dlon/2))^2
-#   c <- 2 * atan2(sqrt(a), sqrt(1 - a))
-#   R <- 3956.5466780874689903
-#   d <- R * c
-#   return(d)
-# }
-
-
-
 # Find nearest froyo shop for each lot ################################################################
 
 # Initialize an empty list to store the results
@@ -75,12 +10,6 @@ pb <- progress::progress_bar$new(
   total = nrow(manhattanLots), clear = FALSE, width= 60)
 
 for (i in 1:nrow(manhattanLots)) {
-  
-  # For lot i, calculate the distance to each froyo shop
-  # distance <- ManDist(manhattanLots$latitude[i], manhattanLots$longitude[i],
-  #                     froyoData$geometry.location.lat, froyoData$geometry.location.lng) 
-  # distance <- earth.dist(lat1=manhattanLots$latitude[i], long1 = manhattanLots$longitude[i],
-  #                        lat2=froyoData$geometry.location.lat, long2 = froyoData$geometry.location.lng)
   
   # For lot i, calculate the great circle distance to each froyo shop in miles
   distance <- 0.000621371 * distCosine(p1=as.matrix(data.frame(manhattanLots$longitude[i], manhattanLots$latitude[i])),
