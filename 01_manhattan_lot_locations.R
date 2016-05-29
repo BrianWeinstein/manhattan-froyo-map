@@ -1,6 +1,7 @@
 
 
-# Read in Manhattan PLUTO data http://www1.nyc.gov/assets/planning/download/zip/data-maps/open-data/nyc_pluto_16v1.zip
+# Read in Manhattan PLUTO data
+# http://www1.nyc.gov/assets/planning/download/zip/data-maps/open-data/nyc_pluto_16v1.zip
 manhattanLots <- read_csv(file="datasets/raw/Mn.csv")
 
 
