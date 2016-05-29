@@ -173,112 +173,12 @@ boroughData$borough[grepl("^$", boroughData$borough)] <- NA
 froyoData <- left_join(froyoData, boroughData, by="place_id") %>%
   filter(borough == "Manhattan")
 
-# 
-# 
-# ggmap(map.google, extent="panel", darken = c(0.0, "black")) +
-#   #stat_density2d(data = froyoPlotData, aes(x=longitude, y=latitude, fill = ..level.., alpha = ..level..), size = .01, bins = 100, geom = "polygon") +
-#   #stat_density2d(data=froyoData, aes(x=geometry.location.lng, y=geometry.location.lat, fill = ..level..), alpha = 0.01, size = .01, bins = 100, geom = "polygon") +
-#   #geom_density2d(data=froyoData, aes(x=geometry.location.lng, y=geometry.location.lat), size = 0.3, bins=20) +
-#   #scale_fill_gradient(low = "green", high = "red") +
-#   #scale_alpha(range = c(0, 0.1), guide = FALSE) +
-#   geom_point(data=froyoData, aes(x=geometry.location.lng, y=geometry.location.lat), size=1, color="black") +
-#   scale_x_continuous(breaks=seq(-73.7, -74.2, -0.02)) + geom_hline(yintercept = seq(40.6, 40.99, 0.02), color="gray") +
-#   scale_y_continuous(breaks=seq(40.6, 40.99, 0.02)) + geom_vline(xintercept = seq(-73.7, -74.2, -0.02), color="gray") +
-#   theme(axis.text.x = element_text(angle = 45, hjust = 1))
-# 
-
-# 
-# 
-# (grepl(", New York", vicinity)) | 
-#   (
-#     (geometry.location.lng <= -73.91866 &
-#        geometry.location.lat <= 40.40.78)
-#     # &
-#     #   (geometry.location.lng >= -74 |
-#     #      geometry.location.lat <= 40.78) &
-#     #   (geometry.location.lng >= -74.01438)
-#   )
-# )
-
 
 # Remove temp variables
 rm(manhattanRegionCenters, froyoList, boroughList, boroughData, i)
 
+
 # Write froyoData to csv
 write.csv(froyoData, file="datasets/froyo_locations_google.csv", row.names=FALSE)
-
-
-
-
-
-
-# Plot ###############################################################################################################
-
-
-# froyoPlotData <- data.frame(latitude=as.numeric(froyoData$geometry.location.lat),
-#                             longitude=as.numeric(froyoData$geometry.location.lng))
-# froyoPlotData <- froyoPlotData[!duplicated(froyoPlotData), ]
-# 
-# 
-# 
-# 
-# library(ggmap)
-# 
-# map.google <- get_map(location=c(lon = -73.96273, lat = 40.78577),
-#                       source="google", maptype="roadmap",
-#                       crop=FALSE, zoom=11, scale=2)
-# 
-# map.google.bw <- get_map(location=c(lon = -73.96273, lat = 40.78577),
-#                          source="google", maptype="roadmap", color="bw",
-#                          crop=FALSE, zoom=12, scale=2)
-# 
-# map.google.terrain <- get_map(location=c(lon = -73.96273, lat = 40.78577),
-#                               source="google", maptype="terrain",
-#                               crop=FALSE, zoom=11, scale=2)
-# 
-# map.google.terrain.bw <- get_map(location=c(lon = -73.96273, lat = 40.78577),
-#                                  source="google", maptype="terrain", color="bw",
-#                                  crop=FALSE, zoom=12, scale=2)
-# 
-# 
-# ggmap(map.google, #extent="device",
-#       darken = c(0.0, "black")) +
-#   geom_point(data=froyoPlotData, aes(x=longitude, y=latitude), alpha=0.5, size=3, color="darkred")
-# 
-# 
-# ggmap(map.google, darken = c(0.0, "black")) +
-#   geom_point(data=froyoPlotData, aes(x=longitude, y=latitude), alpha=0.5, size=3, color="darkred")
-# 
-# 
-# 
-# ggmap(map.google, extent="panel", darken = c(0.0, "black")) +
-#   #stat_density2d(data = froyoPlotData, aes(x=longitude, y=latitude, fill = ..level.., alpha = ..level..), size = .01, bins = 100, geom = "polygon") +
-#   #stat_density2d(data=froyoData, aes(x=geometry.location.lng, y=geometry.location.lat, fill = ..level..), alpha = 0.01, size = .01, bins = 100, geom = "polygon") +
-#   #geom_density2d(data=froyoData, aes(x=geometry.location.lng, y=geometry.location.lat), size = 0.3, bins=20) +
-#   #scale_fill_gradient(low = "green", high = "red") +
-#   #scale_alpha(range = c(0, 0.1), guide = FALSE) +
-#   geom_point(data=froyoData, aes(x=geometry.location.lng, y=geometry.location.lat), size=1, color="black") +
-#   scale_x_continuous(breaks=seq(-73.7, -74.2, -0.02)) + geom_hline(yintercept = seq(40.6, 40.99, 0.02)) +
-#   scale_y_continuous(breaks=seq(40.6, 40.99, 0.02)) + geom_vline(xintercept = seq(-73.7, -74.2, -0.02)) +
-#   theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-
-# 
-# 
-# 
-# ggmap(map.google, extent="device", darken = c(0.0, "black")) +
-#   stat_density2d(data = froyoPlotData, aes(x=longitude, y=latitude, fill = ..level.., alpha = ..level..),
-#                  size = .01, bins = 100, geom = "polygon") +
-#   geom_density2d(data=froyoPlotData, aes(x=longitude, y=latitude), size = 0.3, bins=20) +
-#   scale_fill_gradient(low = "green", high = "red") + 
-#   scale_alpha(range = c(0, 0.1), guide = FALSE) +
-#   geom_point(data=froyoPlotData, aes(x=longitude, y=latitude), size=3, color="darkred")
-# 
-# 
-# 
-# ggmap(map.google, extent="panel", darken = c(0.0, "black")) +
-#   stat_density2d(data=froyoPlotData, aes(x=longitude, y=latitude, fill=sqrt(..level..), alpha=..level..), geom = "polygon", size=0.1, bins=200) +
-#   scale_fill_gradient(low = "red", high = "green")
-
 
 
